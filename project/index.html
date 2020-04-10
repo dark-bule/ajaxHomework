@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		
+        <link rel="stylesheet" href="./css/style.css">
+	</head>
+	
+	<body>
+        <div id="container"></div>
+		<!--页面容器-->
+		<!-- <div id="container">
+			
+			<div class="item">
+				<div class="item-title">作业名字</div>
+				<div>
+					<span class="item-content">创建时间</span>
+					<span class="item-content">发布老师</span>
+				</div>
+			</div>
+		</div> -->
+    </body>
+    
+
+    <!-- <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script> -->
+    
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script>
+
+		
+		$.ajax({	
+		    //请求方式
+		    type:'get',
+		    
+		    //发送请求的地址
+		    //我这里的地址是不需要传数据的，所以没有拼接参数
+		    // url:'https://api.myjson.com/bins/73fno'
+            url:'https://cnodejs.org/api/v1/topics',
+		    
+		    //服务器返回的数据类型
+		    dataType:'json',
+		    
+		    //请求成功的处理
+		    success:function(data){
+		        console.log(data);
+		        //获取需要的数据
+		        var group = data.data;
+		        console.log(group);
+		        //拼接字符串
+			    var str = '';
+			    // console.log(group.length);
+
+                for(var i=0;i<group.length;i++){
+                    //作者id（即代表着对应的头像）
+					// console.log
+                    str += '<div class="whole"><div class="author_id_div"> <img src="' + group[i].author.avatar_url +
+					'" alt="" onclick="skip(\''+group[i].author_id.split(" ")+'\')"></div>';
+                
+                    str += '<div class="reply_div"><span class="reply_count_span">' + 
+                    group[i].reply_count + "/" + 
+                    '</span><span class="visit_count_span">' +
+                    group[i].visit_count + '</span></div>';
+
+                    // console.log(group[i].tab);
+
+                    //监测标志是置顶、精华、分享、问答、招聘
+                    if(group[i].top == true){
+                        str += '<div class="good_div"><p class="good_p">置顶</p></div>';
+                    }
+                    else
+                    {
+                        if (group[i].tab == "share"){
+                            str += '<div class="share_div"><p class="share_p">分享</p></div>';
+                        }
+                        if (group[i].tab == "ask"){
+                            str += '<div class="share_div"><p class="share_p">问答</p></div>';
+                        }
+                        if (group[i].tab == "job"){
+                            str += '<div class="share_div"><p class="share_p">招聘</p></div>';
+                        }
+                        if (group[i].tab == "good"){
+                            str += '<div class="share_div"><p class="share_p">精华</p></div>';
+                        }
+                    }
+                    // var contentToA = group[i].content;
+                    // var b = 12;
+                    //标题和回答数及观看数的集合
+                    str += '<div class="title_div"><a class="title_a" href="content.html?content=' + group[i].id +'">' 
+                    + group[i].title + '</a></div>' +
+                    '<div class="last_reply_at">' + 
+                    group[i].last_reply_at + '</div></div>';
+                }
+                
+                
+                
+                //对数据做遍历，拼接到页面显示
+		        // for(var i=0;i<group.length;i++){
+			    //     str += '<div class="item">'+
+			    //     	   	'<div class="item-title">'+ group[i].name +'</div>'+
+			    //     	   		'<div>'+
+			    //     	   			'<span class="item-content">'+ group[i].time +'</span>'+
+			    //     	   			'<span class="item-content">'+ group[i].teacher +'</span>'+
+			    //     	   		'</div>'+
+			    //     	   '</div>';
+		        // }
+		        
+                
+                
+                //放入页面的容器显示
+                //  console.log(str);
+
+		        // $('#container').html(str);
+                document.getElementById('container').innerHTML=str;
+                // $('#container').html(group);
+		        
+
+
+		    },
+		    //请求失败的处理
+		    error:function(jqXHR){
+		        console.log(jqXHR);
+		    }
+		});
+		
+		function skip(x){
+            // str = ''
+            console.log(x);
+            window.open('./author_id.html?data='+x);
+            return 0;
+        }
+
+	</script>
+
+</html>

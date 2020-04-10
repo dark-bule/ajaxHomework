@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <!-- <img src="./img/1.jpg" alt="" onclick="tiaozhuan('guidao')"> -->
+    <script>
+        var i = 1111;
+        // str = '<img src="./img/1.jpg" alt="" onclick="tiaozhuan('+"guidao"+')">';
+        str = '<img src="./img/1.jpg" alt="" onclick="tiaozhuan('+i+')">'
+        console.log(str);
+        document.getElementById('container').innerHTML=str;
+        function tiaozhuan(x){
+            // str = ''
+            console.log(x);
+            window.open('test_a2.html?data='+x);
+            return 0;
+        }
+
+    </script>
+</body>
+</html>

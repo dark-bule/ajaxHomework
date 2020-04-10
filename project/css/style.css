@@ -1,0 +1,53 @@
+body {
+    background: #f5f5f5;
+}
+
+.whole{
+    display:flex;
+    flex-direction:row;
+}
+.author_id_div{
+    width: 5%;
+}
+.author_id_div img{
+    width: 100%;
+}
+.reply_div{
+    width: 10%;
+}
+.visit_count_span{
+    color: gray;
+}
+.share_div{
+    width: 5%;
+    background-color: rgb(212, 208, 208);
+}
+.share_p{
+    color: rgb(66, 65, 65);
+}
+.good_div{
+    width: 5%;
+    background-color: greenyellow;
+}
+.good_p{
+    color: white;
+}
+.title_div{
+    width: 70%;
+}
+.title_a:link{
+    text-decoration:none;
+    color: black;
+}
+.title_a:visited{
+    text-decoration:none;
+    color: gray;
+}
+.last_reply_at{
+    width: 10%;
+}
+
+
+.author_img{
+    width: 10%;
+}

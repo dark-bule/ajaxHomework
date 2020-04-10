@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script>
+        var id = window.location.href.split("?")[1].split("=")[1];
+        // document.getElementById('container').innerHTML = content;
+        // alert(content);
+        // console.log(content);
+
+
+        $.ajax({	
+		    //请求方式
+		    type:'get',
+
+            url:'https://cnodejs.org/api/v1/topics',
+		    
+		    //服务器返回的数据类型
+		    dataType:'json',
+		    
+		    //请求成功的处理
+		    success:function(data){
+		        console.log(data);
+		        //获取需要的数据
+		        var group = data.data;
+		        console.log(group);
+		        //拼接字符串
+			    var str = '';
+			    // console.log(group.length);
+
+                for(var i=0;i<group.length;i++){
+                   
+                   if (group[i].id == id){
+                    str += group[i].content;
+                   }
+                    
+                }
+                
+                //放入页面的容器显示
+                //  console.log(str);
+
+		        // $('#container').html(str);
+                document.getElementById('container').innerHTML=str;
+                // $('#container').html(group);
+		        
+		    },
+		    //请求失败的处理
+		    error:function(jqXHR){
+		        console.log(jqXHR);
+		    }
+		});
+
+
+    </script>    
+
+</body>
+</html>
